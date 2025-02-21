@@ -3,8 +3,8 @@
     // Create and inject styles
     const styles = `
       .my-chat-widget {
-        --chat--color-primary: var(--my-chat-primary-color, #854fff);
-        --chat--color-secondary: var(--my-chat-secondary-color, #6b3fd4);
+        --chat--color-primary: var(--my-chat-primary-color,rgb(84, 84, 253));
+        --chat--color-secondary: var(--my-chat-secondary-color,rgb(124, 157, 255));
         --chat--color-background: var(--my-chat-background-color, #ffffff);
         --chat--color-font: var(--my-chat-font-color, #333333);
         font-family: 'Geist Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -20,8 +20,8 @@
         height: 600px;
         background: var(--chat--color-background);
         border-radius: 12px;
-        box-shadow: 0 8px 32px rgba(133, 79, 255, 0.15);
-        border: 1px solid rgba(133, 79, 255, 0.2);
+        box-shadow: 0 8px 32px rgba(79, 97, 255, 0.15);
+        border: 1px solid rgba(85, 79, 255, 0.2);
         overflow: hidden;
         font-family: inherit;
       }
