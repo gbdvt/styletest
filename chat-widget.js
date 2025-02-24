@@ -25,7 +25,37 @@
         overflow: hidden;
         font-family: inherit;
       }
-  
+
+      .my-chat-widget .talk-human-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        padding: 14px 24px;
+        background: #25D366; /* WhatsApp green */
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: transform 0.3s;
+        font-weight: 500;
+        font-family: inherit;
+        text-decoration: none;
+        margin-bottom: 12px;
+      }
+
+      .my-chat-widget .talk-human-btn:hover {
+        transform: scale(1.02);
+      }
+
+      .my-chat-widget .whatsapp-logo {
+        width: 20px;
+        height: 20px;
+      }
+
+      
       .my-chat-widget .chat-container.position-left {
         right: auto;
         left: 20px;
@@ -331,8 +361,13 @@
           <svg class="message-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <path fill="currentColor" d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.2L4 17.2V4h16v12z"/>
           </svg>
-          Send us a message
+          Talk to an AI Agent
         </button>
+
+        <a href="https://wa.me/33766335709" target="_blank" class="talk-human-btn">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Logo" class="whatsapp-logo">
+          Talk to a Human
+        </a>
         <p class="response-text">${config.branding.responseTimeText}</p>
       </div>
     `;
