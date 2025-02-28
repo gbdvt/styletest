@@ -487,24 +487,51 @@
       }
   
       // Function to stream text
-      async function streamText(text, element) {
-        const delay = 30; // milliseconds per character
-        let index = 0;
-        
-        return new Promise(resolve => {
-          function addNextChar() {
-            if (index < text.length) {
-              element.textContent += text[index];
-              index++;
-              messagesContainer.scrollTop = messagesContainer.scrollHeight;
-              setTimeout(addNextChar, delay);
-            } else {
-              resolve();
-            }
-          }
-          addNextChar();
-        });
+      // Simple markdown parser function
+function parseMarkdown(text) {
+  // Bold: **text** or __text__
+  text = text.replace(/(\*\*|__)(.*?)\1/g, '<strong>$2</strong>');
+  
+  // Italic: *text* or _text_
+  text = text.replace(/(\*|_)(.*?)\1/g, '<em>$2</em>');
+  
+  // Convert line breaks to <br>
+  text = text.replace(/\n/g, '<br>');
+  
+  // Convert links [text](url)
+  text = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
+  
+  // Bullet lists
+  text = text.replace(/^\s*-\s+(.+)/gm, '• $1');
+  
+  return text;
+}
+
+// Updated streamText function
+async function streamText(text, element) {
+  const delay = 30; // milliseconds per character
+  const parsedText = parseMarkdown(text);
+  let index = 0;
+  let htmlContent = '';
+  
+  // Clear any existing content
+  element.innerHTML = '';
+  
+  return new Promise(resolve => {
+    function addNextChar() {
+      if (index < parsedText.length) {
+        htmlContent += parsedText[index];
+        element.innerHTML = htmlContent;
+        index++;
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        setTimeout(addNextChar, delay);
+      } else {
+        resolve();
       }
+    }
+    addNextChar();
+  });
+}
     
       // Start new conversation
       async function startNewConversation() {
